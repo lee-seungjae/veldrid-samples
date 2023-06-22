@@ -1,14 +1,14 @@
 ﻿using System.IO;
 using System.Numerics;
+using System.Text;
 using Veldrid;
 using Veldrid.Sdl2;
-using Veldrid.StartupUtilities;
 using Veldrid.SPIRV;
-using System.Text;
+using Veldrid.StartupUtilities;
 
 namespace GettingStarted
 {
-    class Program
+    internal class Program
     {
         private static GraphicsDevice _graphicsDevice;
         private static CommandList _commandList;
@@ -42,7 +42,7 @@ void main()
     fsout_Color = fsin_Color;
 }";
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             WindowCreateInfo windowCI = new WindowCreateInfo()
             {
@@ -60,7 +60,7 @@ void main()
                 PreferDepthRangeZeroToOne = true
             };
 
-            _graphicsDevice = VeldridStartup.CreateGraphicsDevice(window, options, GraphicsBackend.Vulkan);
+            _graphicsDevice = VeldridStartup.CreateGraphicsDevice(window, options, GraphicsBackend.OpenGLES);
 
             CreateResources();
 
@@ -184,7 +184,7 @@ void main()
         }
     }
 
-    struct VertexPositionColor
+    internal struct VertexPositionColor
     {
         public const uint SizeInBytes = 24;
         public Vector2 Position;
